@@ -1,0 +1,131 @@
+﻿@model HerzingProjectTemplate.Models.WorkOut
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create WorkOut</h1>
+
+<hr />
+
+<form asp-controller="WorkOut" asp-action="Create" method="post" id="myworkout_form">
+    @Html.AntiForgeryToken()
+    <input type="hidden"
+           asp-for="UserId" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="WorkOutActivityDate" class="control-label">Date</label>
+        <input asp-for="WorkOutActivityDate" class="form-control" />
+        @* <span asp-validation-for="WorkOutActivityDate" class="text-danger"></span> *@
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Day" class="control-label">Day</label>
+        <select asp-for="Day" class="form-control">
+            <option value="">-- Select a Day --</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+        </select>
+        @* <span asp-validation-for="Day" class="text-danger"></span> *@
+    </div>
+    <div>
+        <label asp-for="WorkOutType" class="control-label"> Workout Type</label>
+        <select asp-for="WorkOutType" class="form-control">
+            <option value="">-- Select a Workout type --</option>
+            <option value="Endurance Training">Endurance Training</option>
+            <option value="Resistance Training">Resistance Training</option>
+            <option value="Body Weight Training">Body Weight Training</option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="WorkoutTypeMode" class="control-label">Workout Type Category</label>
+        <select asp-for="WorkoutTypeMode" class="form-control">
+            <option value="">-- Select a Workout Type Category --</option>
+            <option value="Beginner Workouts">Beginner Workouts</option>
+            <option value="Intermediate Workouts">Intermediate Workouts</option>
+            <option value="Advanced Workouts">Advanced Workouts</option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="ExerciseList" class="control-label">Workout Name</label>
+        <select asp-for="ExerciseList" class="form-control" multiple>
+            <option value="">-- Select a Workout Exercise --</option>
+            <option value="Endurance Training">Endurance Training</option>
+            <option value="Resistance Training">Resistance Training</option>
+            <option value="Body Weight Training">Body Weight Training</option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="WorkoutDetails" class="control-label">Workout Details</label>
+        <select asp-for="WorkoutDetails" class="form-control">
+            <option value="">-- Select the details of your Workout type --</option>
+            <option value="10 rounds-60 rest">Reps:10 rounds-60 secs rest</option>
+            <option value="10 rounds-60 rest">Reps:10 rounds-60 secs rest</option>
+            <option value="10 rounds-60 rest">Reps:10 rounds-60 secs rest</option>
+        </select>
+    </div>
+
+    <br /><br />
+
+    @* <span asp-validation-for="WorkOutType" class="text-danger d-block mt-2"></span> *@
+    <button type="submit" class="btn btn-primary mt-3">Create</button>
+
+</form>
+
+
+
+
+
+@* <script>
+
+    const radioButtons = document.querySelectorAll('.workout-input');
+    const myDivs = document.querySelectorAll('#outputContainer .contentbox'); //grab the parent div and the class of specific child div
+
+      // form.addEventListener('change', (event) => {
+      //   // 1. Hide every content panel first
+      //   myDivs.forEach(panel => {
+      //     panel.style.display = 'none';
+      //   });
+
+      radioButtons.forEach(radio => {
+        radio.addEventListener('change', (event) => {
+
+            // Hide every content panel first
+            myDivs.forEach(panel => {
+                panel.style.display = 'none';
+            });
+
+        // 2. Identify which panel to show based on the data-target attribute
+        const targetId = event.target.getAttribute('data-target');
+        const targetPanel = document.getElementById(targetId);
+
+        // 3. Reveal the specific div if it exists
+        if (targetPanel) {
+                targetPanel.style.display = 'block';
+            }
+        });
+    });
+
+</script>
+ *@
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+@* <div>
+    <a asp-action="Index">Back to List</a>
+</div> *@

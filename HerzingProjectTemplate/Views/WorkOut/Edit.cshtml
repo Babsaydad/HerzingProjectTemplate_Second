@@ -1,0 +1,54 @@
+﻿@model HerzingProjectTemplate.Models.WorkOut
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>WorkOut</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="WorkoutId" />
+            <div class="form-group">
+                <label asp-for="WorkOutType" class="control-label"></label>
+                <input asp-for="WorkOutType" class="form-control" />
+                <span asp-validation-for="WorkOutType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkoutTypeMode" class="control-label"></label>
+                <input asp-for="WorkoutTypeMode" class="form-control" />
+                <span asp-validation-for="WorkoutTypeMode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciseList" class="control-label"></label>
+                <input asp-for="ExerciseList" class="form-control" />
+                <span asp-validation-for="ExerciseList" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Day" class="control-label"></label>
+                <input asp-for="Day" class="form-control" />
+                <span asp-validation-for="Day" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkOutActivityDate" class="control-label"></label>
+                <input asp-for="WorkOutActivityDate" class="form-control" />
+                <span asp-validation-for="WorkOutActivityDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

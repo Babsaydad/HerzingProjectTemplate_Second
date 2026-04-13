@@ -1,0 +1,247 @@
+﻿@model HerzingProjectTemplate.Models.UserProfile
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Profile Details</h1>
+
+<div>
+    @* <h4>UserProfile</h4> *@
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ActivityLevel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ActivityLevel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FitnessGoal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FitnessGoal)
+        </dd>
+        @* <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BMR)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BMR)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TDEE)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TDEE)
+        </dd> *@
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-primary">Edit Profile Data</a> 
+    @* <a asp-action="Index">Back to List</a> *@
+</div>
+
+<br />
+<hr />
+<br />
+
+<div class="stats-container">
+    <!-- BMR Card -->
+    <div class="stat-card">
+        <span class="stat-label">Basal Metabolic Rate (BMR)</span>
+        <div class="stat-value">
+            @Model.BMR.ToString("N0") <span class="stat-unit">kcal/day</span>
+        </div>
+        <small class="text-muted">Calories burned at rest</small>
+    </div>
+
+    <!-- TDEE Card -->
+    <div class="stat-card tdee-card">
+        <span class="stat-label">Total Daily Energy Expenditure (TDEE)</span>
+        <div class="stat-value">
+            @Model.TDEE.ToString("N0") <span class="stat-unit">kcal/day</span>
+        </div>
+        @* <small class="text-muted">Maintain current weight</small> *@
+    </div>
+</div>
+<br/> <br />
+@* <a asp-controller="Nutrition" class="btn btn-success"
+   asp-action="Create"
+   asp-route-userId="@Model.UserId">Add Nutrition Entry</a> *@
+
+
+
+
+
+@* ... Display of Created Food  ... *@
+
+<hr />
+<br />
+<br />
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Daily Food Log</h3>
+    <a asp-controller="Nutrition" asp-action="Create" asp-route-userId="@Model.UserId" class="btn btn-success">
+        + Add New Meal
+    </a>
+</div>
+<p><small>Meals you have created will appear in the table below!</small></p>
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Meal Type</th>
+                    <th>Food Name</th>
+                    <th>Protein (g)</th>
+                    <th>Carbohydrates (g)</th>
+                    <th>Fats (g)</th>
+                    <th>Total Calories (g)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Nutritions != null && Model.Nutritions.Any())
+                {
+                    @foreach (var item in Model.Nutritions.OrderByDescending(n => n.NutritionActivityDate))
+                    {
+                        <tr>
+                            <td>@item.NutritionActivityDate.ToShortDateString()</td>
+                            <td>@item.Day</td>
+                            <td><strong>@item.MealType</strong></td>
+                            <td>@item.FoodName</td>
+                            <td>@item.Protein</td>
+                            <td>@item.Carbohydrates</td>
+                            <td>@item.Fats</td>
+                            <td class="text-primary font-weight-bold">@item.Calories.ToString("N0")</td>
+                            
+                            <td>
+                                <a asp-controller="Nutrition" asp-action="Edit" asp-route-id="@item.NutritionId" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                <a asp-controller="Nutrition" asp-action="Delete" asp-route-id="@item.NutritionId" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8" class="text-center text-muted py-4">
+                            No food entries recorded yet for this user.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-controller="Nutrition" asp-action="Edit" asp-route-id="@Model.UserId" class="btn btn-primary">Edit Food Log</a> 
+    @* <a asp-action="Index">Back to List</a> *@
+</div>
+
+<br /><br />
+
+<hr />
+<br />
+<br />
+
+@* Display of Created Workouts *@
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Daily WorkOut Schedule</h3>
+    <a asp-controller="WorkOut" asp-action="Create" asp-route-userId="@Model.UserId" class="btn btn-success">
+        + New Workout Schedule</a>
+</div>
+<p><small>Your workout schedules will appear in the table below!</small></p>
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>WorkOut Type</th>
+                    <th>Mode</th>
+                    <th>Exercise List</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.WorkOuts != null && Model.WorkOuts.Any())
+                {
+                    @foreach (var item in Model.WorkOuts.OrderByDescending(n => n.WorkOutActivityDate))
+                    {
+                        <tr>
+                            <td>@item.WorkOutActivityDate.ToShortDateString()</td>
+                            <td>@item.Day</td>
+                            <td>@item.WorkOutType</td>
+                            <td>@item.WorkoutTypeMode</td>
+                            <td>@(item.ExerciseList != null ? string.Join(", ", item.ExerciseList) : "")</td>
+
+                            <td>
+                                <a asp-controller="WorkOut" asp-action="Edit" asp-route-id="@item.WorkoutId" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                <a asp-controller="WorkOut" asp-action="Delete" asp-route-id="@item.WorkoutId" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8" class="text-center text-muted py-4">
+                            No workout entries recorded yet for this user.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-controller="WorkOut" asp-action="Edit" asp-route-id="@Model.UserId" class="btn btn-primary">Edit Workout Schedule</a>
+    @* <a asp-action="Index">Back to List</a> *@
+</div>
+
+
+

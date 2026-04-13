@@ -1,0 +1,119 @@
+﻿@model IEnumerable<HerzingProjectTemplate.Models.UserProfile> 
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActivityLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FitnessGoal)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.BMR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TDEE)
+            </th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FitnessGoal)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.BMR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TDEE)
+            </td *@>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<br />
+<hr />
+<br />
+
+@foreach (var item in Model) {
+<div class="stats-container">
+    <!-- BMR Card -->
+    <div class="stat-card">
+        <span>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</span>
+        <span class="stat-label">Basal Metabolic Rate (BMR)</span>
+        <div class="stat-value">
+            @Html.DisplayFor(modelItem => item.BMR) 
+            <span class="stat-unit">kcal/day</span><br />
+        </div>
+        @* <small class="text-muted">Calories burned at rest</small> *@
+    </div>
+
+    <!-- TDEE Card -->
+    <div class="stat-card tdee-card">
+        <span>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</span>
+        <span class="stat-label">Total Daily Energy Expenditure (TDEE)</span>
+        <div class="stat-value">
+            @Html.DisplayFor(modelItem => item.TDEE) <span class="stat-unit">kcal/day</span>
+        </div>
+        @* <small class="text-muted">Maintain current weight</small> *@
+    </div>
+</div>
+}

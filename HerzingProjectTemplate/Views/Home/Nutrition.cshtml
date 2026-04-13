@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Nutrition";
+}
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<p>
+    The information you provided earlier in the Create Profile 
+    button in the User Profile page is an important tool to determine the best 
+    nutrition that will help you to map your journey toward progressive good 
+    health and fitness.
+</p>
+
+<p>
+    If you have not created a profile yet, click <a asp-controller="UserProfile" asp-action="Create">here</a>
+    to create a profile and calculate your Basal Metabolic Rate (BMR) and Total Daily
+    Energy Expenditure (TDEE).
+</p>
+
+<h3 class="text-center">IMPORTANT FACTS TO CONSIDER</h3>
+
+<div class="d-flex justify-content-center align-items-center py-5">
+    <div>
+        <p class="text-center"><bold>What is Basal Metabolic Rate (BMR)?</bold></p>
+        Basal Metabolic Rate is the minimum energy required by your body to survive 
+        or carry out its normal activities.
+    </div>
+    <br /><br />
+    <div>
+        <p class="text-center"><bold>What is Total Daily Energy Expenditure (TDEE)?</bold></p>
+        Total Daily Energy Expenditure is the amount of energy you utilize 
+        daily based on your activity level.
+    </div>
+    <br /><br />
+</div>
+
+<div class="d-flex justify-content-center align-items-center">
+    <div>
+        You need these pieces of information to design your Nutrition and
+        Workout plan that can guide you to program and progressively maintain a good
+        health and fit lifestyle. <em>You can take control of your health from here!</em>
+    </div>
+    <br /><br />
+    <div>
+        You need to ensure that the total energy that you make available to
+        your body through what you eat does not fall below your Basal Metabolic Rate.
+        This will ensure that your body has enough energy to function properly,
+        without stress and keep you alive and well.
+    </div>
+    <br /><br />
+    <div>
+        You can break down your energy needs into different meals such as Breakfast,
+        Lunch, Dinner, Snack etc. to keep track and achieve you health and fitness goal.
+        Obviously, it is not compulsory to eat three times a day but you have the
+        flexibility to design what works best for you.
+
+        You can take out time to plan your daily, weekly and/or monthly food intake
+        that would build towards your health and fitness goal.
+    </div>
+</div>
+
+<div>
+    <h3 class="text-center">STRATEGY</h3>
+    <div>
+        <div>
+            <p class="text-center">To Lose Weight</p>
+            Create a calorie deficit by eating fewer calories than your TDEE.
+            Never eat below your BMR without medical supervision as it can lead
+                to muscle loss, severe metabolism slowing and nutritional deficiency.
+            Focus on high protein to preserve muscle mass and high volume, low calorie
+            foods to feel full (e.g. veggies).
+        </div>
+        <div>
+            <p class="text-center">To Maintain Weight</p>
+            Maintain calorie balance by eating roughly the same amount as your TDEE.
+            Your Nutritional plan should consistently balance intake of macronutrients 
+                (protein, fats and carbs) to fuel daily activity.
+        </div>
+        <div>
+            <p class="text-center">To Gain Weight</p>
+            Create a calorie surplus by eating more calories that your TDEE. As muscle 
+            mass (BMR) increases you will need to increase your TDEE to continue growing.
+            Increase protein intake significantly to support muscle repair and growth 
+            paired with strength training.
+        </div>
+    </div>
+</div>
+
+<br /><br />
+
+<div>If you do not have a profile and you are ready to create your Food plan, click on 
+    <a asp-controller="UserProfile" asp-action="Create">here!</a> You will create a profile 
+    and gain access to create your food plan.  
+    <p>If you have a profile and you are ready to create your Food plan, click 
+        <a asp-controller="Home" asp-action="UserProfile">here!</a> to sign in.
+    </p>
+</div>

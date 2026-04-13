@@ -1,0 +1,105 @@
+﻿@model HerzingProjectTemplate.Models.Nutrition
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@* @{
+    ViewBag.Title = "Create";
+} *@
+
+<h1>Create Nutrition</h1>
+
+@* <h4>Nutrition</h4> *@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NutritionActivityDate" class="control-label"></label>
+                <input asp-for="NutritionActivityDate" class="form-control" />
+                <span asp-validation-for="NutritionActivityDate" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="UserId" />
+            
+            <div class="form-group">
+                <label asp-for="Day" class="control-label"></label>
+                <select asp-for="Day" class="form-control">
+                    <option value="">-- Select a Day --</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+                <span asp-validation-for="Day" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MealType" class="control-label"></label>
+                <select asp-for="MealType" class="form-control">
+                    <option value="">-- Select Meal --</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Snack">Snack</option> @* Optional: commonly used in fitness apps *@
+                </select>
+                <span asp-validation-for="MealType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FoodName" class="control-label"></label>
+                <input asp-for="FoodName" class="form-control" />
+                <span asp-validation-for="FoodName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Protein" class="control-label">Protein (g)</label>
+                <input asp-for="Protein" class="form-control" />
+                <span asp-validation-for="Protein" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Carbohydrates" class="control-label">Carbohydrates (g)</label>
+                <input asp-for="Carbohydrates" class="form-control" />
+                <span asp-validation-for="Carbohydrates" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fats" class="control-label">Fats (g)</label>
+                <input asp-for="Fats" class="form-control" />
+                <span asp-validation-for="Fats" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Calories" class="control-label">Calories (g)</label>
+                <input asp-for="Calories" class="form-control" />
+                <span asp-validation-for="Calories" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="FoodEnergy" class="control-label"></label>
+                <input asp-for="FoodEnergy" class="form-control" />
+                <span asp-validation-for="FoodEnergy" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="DailyTotal" class="control-label"></label>
+                <input asp-for="DailyTotal" class="form-control" />
+                <span asp-validation-for="DailyTotal" class="text-danger"></span>
+            </div> *@
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create Food Record" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+ <br /> <br />
+<div>
+    <a asp-controller="UserProfile"
+       asp-action="Details"
+       asp-route-id="@Model.UserId" class="btn btn-success">Back to Profile Page</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

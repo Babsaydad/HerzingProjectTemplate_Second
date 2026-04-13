@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "User Profile";
+}
+<h1 class="text-center">You Are Welcome!</h1>
+
+<br />
+<br />
+<hr />
+<br />
+<br />
+
+<!-- From Uiverse.io by Yaya12085 -->
+
+
+<div class="d-flex justify-content-center align-items-center">
+    <form class="form" asp-controller="UserProfile" asp-action="Login" method="post">
+        <p class="form-title">Sign in to your account</p>
+
+        <div class="input-container">
+            <input placeholder="Enter email" type="email" name="email">
+        </div>
+
+        <div class="input-container">
+            <input placeholder="Enter password" type="password" name="password">
+        </div>
+
+        @* This button submits the form to the 'Login' or 'Details' logic *@
+        <button class="submit" type="submit">
+            Sign in
+        </button>
+
+        <p class="signup-link">
+            No account?
+            @* Link to the Create page *@
+            <a asp-controller="UserProfile" asp-action="Create">Sign up</a>
+        </p>
+    </form>
+</div>
+
+
+
+
+
+
