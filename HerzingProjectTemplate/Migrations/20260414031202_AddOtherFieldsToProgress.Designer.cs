@@ -4,6 +4,7 @@ using HerzingProjectTemplate.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HerzingProjectTemplate.Migrations
 {
     [DbContext(typeof(ApplicationDbContext2))]
-    partial class ApplicationDbContext2ModelSnapshot : ModelSnapshot
+    [Migration("20260414031202_AddOtherFieldsToProgress")]
+    partial class AddOtherFieldsToProgress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,9 +63,6 @@ namespace HerzingProjectTemplate.Migrations
                     b.Property<DateTime>("NutritionActivityDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ProgressId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Protein")
                         .HasColumnType("float");
 
@@ -70,8 +70,6 @@ namespace HerzingProjectTemplate.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("NutritionId");
-
-                    b.HasIndex("ProgressId");
 
                     b.HasIndex("UserId");
 
@@ -201,9 +199,6 @@ namespace HerzingProjectTemplate.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProgressId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -227,8 +222,6 @@ namespace HerzingProjectTemplate.Migrations
 
                     b.HasKey("WorkoutId");
 
-                    b.HasIndex("ProgressId");
-
                     b.HasIndex("UserProfileUserId");
 
                     b.ToTable("WorkOuts");
@@ -236,10 +229,6 @@ namespace HerzingProjectTemplate.Migrations
 
             modelBuilder.Entity("HerzingProjectTemplate.Models.Nutrition", b =>
                 {
-                    b.HasOne("HerzingProjectTemplate.Models.Progress", null)
-                        .WithMany("Nutritions")
-                        .HasForeignKey("ProgressId");
-
                     b.HasOne("HerzingProjectTemplate.Models.UserProfile", "UserProfile")
                         .WithMany("Nutritions")
                         .HasForeignKey("UserId")
@@ -251,20 +240,9 @@ namespace HerzingProjectTemplate.Migrations
 
             modelBuilder.Entity("HerzingProjectTemplate.Models.WorkOut", b =>
                 {
-                    b.HasOne("HerzingProjectTemplate.Models.Progress", null)
-                        .WithMany("WorkOuts")
-                        .HasForeignKey("ProgressId");
-
                     b.HasOne("HerzingProjectTemplate.Models.UserProfile", null)
                         .WithMany("WorkOuts")
                         .HasForeignKey("UserProfileUserId");
-                });
-
-            modelBuilder.Entity("HerzingProjectTemplate.Models.Progress", b =>
-                {
-                    b.Navigation("Nutritions");
-
-                    b.Navigation("WorkOuts");
                 });
 
             modelBuilder.Entity("HerzingProjectTemplate.Models.UserProfile", b =>

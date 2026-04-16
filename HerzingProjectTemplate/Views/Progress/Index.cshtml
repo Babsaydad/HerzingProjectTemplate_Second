@@ -1,0 +1,244 @@
+﻿@model IEnumerable<HerzingProjectTemplate.Models.Progress>
+
+
+@{
+    ViewData["Title"] = "Progress Page";
+}
+
+
+@* <div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Food Name</th>
+                <th>Meal Type</th>
+                <th>Workout Type</th>
+                <th>Mode</th>
+                <th>Exercises</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nutritions.FoodName</td>
+                    <td>@item.Nutritions.Mealtype</td>
+                    <td>@item.WorkoutType</td>
+                    <td>@item.WorkoutTypeMode</td>
+                    <td>@item.ExeciseList</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> *@
+ 
+
+
+
+
+
+
+
+<div class="modal fade" id="nutritionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span id="nutritionTitle"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Progress" asp-action="Submit" method="post" id="nutrition_info">
+                    <input type="hidden" name="ProgressDate" id="nutritionDateInput" />
+                    <input type="hidden" name="EntryType" value="Nutrition" />
+                    <div id="nutritionMessage">
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="workoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span id="workoutTitle"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Progress" asp-action="Submit" method="post" id="workout_info">
+                    <input type="hidden" name="ProgressDate" id="workoutDateInput" />
+                    <input type="hidden" name="EntryType" value="Workout" />
+                    <div id="workoutMessage"> 
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="calendar" style="width: 60%;">
+</div>
+
+
+
+
+
+@section Scripts {
+    <script src="~/lib/fullcalendar/index.global.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            // Initialize Bootstrap Modal object
+            var myNutritionModal = new bootstrap.Modal(document.getElementById('nutritionModal'));
+            var myWorkoutModal = new bootstrap.Modal(document.getElementById('workoutModal'));
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today', 
+                    center: 'title', 
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                dayCellDidMount: function(info) {
+                    const myDate = info.date.toISOString().split("T")[0];
+                    let container = document.createElement('div');
+                    container.style.cssText = 'display:flex; flex-direction:column; font-size:0.75em; padding:2px;';
+
+                    // Link 1: Trigger Modal
+                    let link1 = document.createElement('a');
+                    link1.innerText = 'Nutrition';
+                    link1.href = '#';
+                    link1.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        shownutritionModal(myDate, 
+                        `
+                            <div>
+                                <h5>Mark as completed if the meal is taken.</h5>
+                                <div>
+                                    <p>Meal Type: Breakfast</p>
+                                    <p>Food Name: Rice and Beans</p>
+                                    <label>
+                                        Completed: <input type="radio" name="nutrition_status_breakfast" value="Completed" /> &nbsp; &nbsp; &nbsp;
+                                        Not Completed: <input type="radio" name="nutrition_status_breakfast" value="Not Completed" />
+                                    </label>
+                                </div>
+                                <hr />
+                                <div>
+                                    <p>Meal Type: Lunch</p>
+                                    <p>Food Name: Groundnut and Flakes</p>
+                                    <label>Status:
+                                        Completed: <input type="radio" name="nutrition_status_lunch" value="Completed" /> &nbsp; &nbsp; &nbsp;
+                                        Not Completed: <input type="radio" name="nutrition_status_lunch" value="Not Completed" />
+                                    </label>
+                                </div>
+                                <hr />
+                                <div>
+                                    <p>Meal Type: Dinner</p>
+                                    <p>Food Name: Vegetables and Pap</p>
+                                    <label>Status:
+                                        Completed: <input type="radio" name="nutrition_status_dinner" value="Completed" />&nbsp; &nbsp; &nbsp;
+                                        Not Completed: <input type="radio" name="nutrition_status_dinner" value="Not Completed" />
+                                    </label>
+                                </div>
+                                <br />
+                            </div>
+                        `
+                        
+                        );
+                    });
+
+                    // Link 2: Trigger Modal
+                    let link2 = document.createElement('a');
+                    link2.innerText = 'WorkOut';
+                    link2.href = '#';
+                    link2.style.color = 'green';
+                    link2.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        showworkoutModal(myDate, 
+                        `
+                            <div>
+                                <h5>Mark as completed if the workout is.</h5>
+                                <div>
+                                    <p>Workout Type: Endurance</p>
+                                    <p>Workout Mode: Beginner</p>
+                                    <p>Exercise: Barbell Squat1</p>
+                                    <label>
+                                        Completed: <input type="radio" name="workout_status1" value="Completed" /> &nbsp; &nbsp; &nbsp;
+                                        Not Completed: <input type="radio" name="workout_status1" value="Not Completed" />
+                                    </label>
+                                </div>
+                                <hr />
+                                <div>
+                                    <p>Workout Type: Resistance</p>
+                                    <p>Workout Mode: Beginner</p>
+                                    <p>Exercise: Barbell Squat2</p>
+                                    <label>
+                                        Completed: <input type="radio" name="workout_status2" value="Completed" />&nbsp; &nbsp; &nbsp;
+                                        Not Completed: <input type="radio" name="workout_status2" value="Not Completed" />
+                                    </label>
+                                </div>
+                                <hr />
+                                <div>
+                                    <p>Workout Type: Body Weight</p>
+                                    <p>Workout Mode: Beginner</p>
+                                    <p>Exercise: Barbell Squat3</p>
+                                    <label>
+                                        Completed: <input type="radio" name="workout_status3" value="Completed" />&nbsp; &nbsp; &nbsp;
+                                        Not Completed: <input type="radio" name="workout_status3" value="Not Completed" />
+                                    </label>
+                                </div>
+                                <br />
+                            </div>
+
+                        `
+                        );
+                    });
+
+                    container.appendChild(link1);
+                    container.appendChild(link2);
+                    info.el.querySelector('.fc-daygrid-day-frame').appendChild(container);
+                }
+            });
+            calendar.render();
+
+            function shownutritionModal(myDate, htmlContent) {
+                document.getElementById('nutritionTitle').innerText = " Predefined Food Plan for - " + myDate;
+                document.getElementById('nutritionDateInput').value = myDate; // Set hidden input
+                document.getElementById('nutritionMessage').innerHTML = htmlContent;
+                myNutritionModal.show();
+            }
+            function showworkoutModal(myDate, htmlContent) {
+                document.getElementById('workoutDateInput').value = myDate; // Set hidden input
+                document.getElementById('workoutTitle').innerText = " Predefined Workout Plan for - " + myDate;
+                document.getElementById('workoutMessage').innerHTML = htmlContent;
+                myWorkoutModal.show();
+            }
+        
+
+
+
+
+
+
+            // // Helper function to update and show modal
+            // function shownutritionModal(date, message) {
+            //     document.getElementById('nutritionTitle').innerText = date;
+            //     document.getElementById('nutritionMessage').innerText = message;
+            //     myNutritionModal.show();
+            // }
+            // function showworkoutModal(date, htmlContent) {
+            //     document.getElementById('workoutTitle').innerText = date;
+            //     document.getElementById('workoutMessage').innerText = htmlContent;
+            //     myWorkoutModal.show();
+            // }
+        });
+    </script>
+}

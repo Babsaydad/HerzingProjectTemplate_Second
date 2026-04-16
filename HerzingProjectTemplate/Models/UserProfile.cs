@@ -36,6 +36,7 @@ namespace HerzingProjectTemplate.Models
         public double BMR { get; set; }
         public double TDEE { get; set; }
 
+        [InverseProperty("UserProfile")]
         public ICollection<Nutrition> Nutritions { get; set; } = new List<Nutrition>();
         public ICollection<WorkOut> WorkOuts { get; set; } = new List<WorkOut>();
 

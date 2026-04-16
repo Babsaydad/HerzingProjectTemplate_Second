@@ -31,7 +31,7 @@ namespace HerzingProjectTemplate.Controllers
         {
             return View();
         }
-        public IActionResult Chosen1()
+        public IActionResult Progress()
         {
             return View();
         }

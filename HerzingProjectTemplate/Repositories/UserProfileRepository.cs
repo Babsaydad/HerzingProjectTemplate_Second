@@ -35,7 +35,7 @@ namespace HerzingProjectTemplate.Repositories
                 .Include(u => u.Nutritions) // This joins the tables
                 .FirstOrDefaultAsync(u => u.UserId == id);
         }
-            //await _context.UserProfiles.FindAsync(id);
+            
 
         public async Task<UserProfile?> GetByEmailAsync(string email) =>
             await _context.UserProfiles.FirstOrDefaultAsync(u => u.Email == email);

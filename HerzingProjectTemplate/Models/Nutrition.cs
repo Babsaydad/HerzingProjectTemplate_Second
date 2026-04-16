@@ -33,7 +33,7 @@ namespace HerzingProjectTemplate.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime NutritionActivityDate { get; set; }
 
-        [ForeignKey("UserId2")]
+        [ForeignKey("UserId")]
         public virtual UserProfile? UserProfile { get; set; }
     }
 }

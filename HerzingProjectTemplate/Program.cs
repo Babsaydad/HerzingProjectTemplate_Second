@@ -1,8 +1,9 @@
 using HerzingProjectTemplate.Data;
+//using HerzingProjectTemplate.Data.Repositories;
 using HerzingProjectTemplate.Repositories;
 using HerzingProjectTemplate.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
+//using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,8 @@ builder.Services.AddScoped<INutritionRepository, NutritionRepository>();
 builder.Services.AddScoped<INutritionService, NutritionService>();
 builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 builder.Services.AddScoped<IWorkoutService, WorkoutService>();
-
+builder.Services.AddScoped<IProgressRepository, ProgressRepository>();
+builder.Services.AddScoped<IProgressService, ProgressService>();
 
 var app = builder.Build();
 

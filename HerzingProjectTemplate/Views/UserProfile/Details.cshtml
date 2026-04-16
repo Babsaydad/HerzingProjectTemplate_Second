@@ -5,99 +5,104 @@
 }
 
 <h1>Profile Details</h1>
-
-<div>
-    @* <h4>UserProfile</h4> *@
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Height)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Height)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ActivityLevel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ActivityLevel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FitnessGoal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FitnessGoal)
-        </dd>
-        @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BMR)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BMR)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TDEE)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TDEE)
-        </dd> *@
-    </dl>
+<div class="d-flex justify-content-end">
+    <a asp-controller="Nutrition" asp-action="Create" class="btn btn-primary">Nutrition Page</a> &nbsp;
+    <a asp-controller="Workout" asp-action="Create" class="btn btn-primary">Workout Page</a>&nbsp;
+    <a asp-controller="Progress" asp-action="Index" class="btn btn-primary">Progress Page</a>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-primary">Edit Profile Data</a> 
-    @* <a asp-action="Index">Back to List</a> *@
-</div>
-
-<br />
 <hr />
-<br />
-
-<div class="stats-container">
-    <!-- BMR Card -->
-    <div class="stat-card">
-        <span class="stat-label">Basal Metabolic Rate (BMR)</span>
-        <div class="stat-value">
-            @Model.BMR.ToString("N0") <span class="stat-unit">kcal/day</span>
-        </div>
-        <small class="text-muted">Calories burned at rest</small>
+<div>
+    <div>       
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Age)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Weight)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Weight)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Height)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Height)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ActivityLevel)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ActivityLevel)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.FitnessGoal)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.FitnessGoal)
+            </dd>
+            @* <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.BMR)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.BMR)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.TDEE)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.TDEE)
+            </dd> *@
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.UserId" class="btn btn-primary">Edit Profile Data</a> 
+        @* <a asp-action="Index">Back to List</a> *@
     </div>
 
-    <!-- TDEE Card -->
-    <div class="stat-card tdee-card">
-        <span class="stat-label">Total Daily Energy Expenditure (TDEE)</span>
-        <div class="stat-value">
-            @Model.TDEE.ToString("N0") <span class="stat-unit">kcal/day</span>
+    <br />
+    <hr />
+    <br />
+    
+    <div class="stats-container">
+        <!-- BMR Card -->
+        <div class="stat-card">
+            <span class="stat-label">Basal Metabolic Rate (BMR)</span>
+            <div class="stat-value">
+                @Model.BMR.ToString("N0") <span class="stat-unit">kcal/day</span>
+            </div>
+            <small class="text-muted">Calories burned at rest</small>
         </div>
-        @* <small class="text-muted">Maintain current weight</small> *@
+
+        <!-- TDEE Card -->
+        <div class="stat-card tdee-card">
+            <span class="stat-label">Total Daily Energy Expenditure (TDEE)</span>
+            <div class="stat-value">
+                @Model.TDEE.ToString("N0") <span class="stat-unit">kcal/day</span>
+            </div>
+            @* <small class="text-muted">Maintain current weight</small> *@
+        </div>
     </div>
 </div>
 <br/> <br />
