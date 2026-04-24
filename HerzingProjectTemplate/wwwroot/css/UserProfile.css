@@ -129,7 +129,31 @@
     }
 /*CSS for displaying LOGIN or SIGN UP STARTS HERE*/
 
-/*CSS for displaying LOGIN or SIGN UP STARTS HERE*/
+.login_page_style {
+    background-color: rgb(85, 40, 213, 0.74);
+    position: fixed; /*Fixes the background to the viewport*/
+    top: 50px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /*Ensures it stays in the background*/
+    overflow: hidden;
+    padding: 60px 60px;
+   
+    
+    background-image: url('../images/slide2.jpg'); /* Adjust path as needed */
+    height: 100%; /* Set a height to ensure the image displays */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-color: rgba(0, 0, 0, 0.8); /* Adds a 40% opaque black overlay */
+    background-blend-mode: overlay; /* Blends the color and image */
+}
+
+.text-center {
+    color: white;
+}
+/*CSS for displaying LOGIN or SIGN UP ENDS HERE*/
 
 
 

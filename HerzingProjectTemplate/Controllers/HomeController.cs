@@ -35,7 +35,7 @@ namespace HerzingProjectTemplate.Controllers
         {
             return View();
         }
-        public IActionResult Chosen2()
+        public IActionResult Rank()
         {
             return View();
         }

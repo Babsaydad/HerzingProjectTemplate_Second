@@ -54,7 +54,7 @@ namespace HerzingProjectTemplate.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Email,Password,Age,Weight,Height,Gender,ActivityLevel,FitnessGoal,BMR,TDEE")] UserProfile userProfile)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,Email,Password,Age,Weight,Height,Gender,ActivityLevel,FitnessGoal,BMR,TDEE")] UserProfile userProfile)
         {
             if (ModelState.IsValid)
             {
@@ -77,9 +77,12 @@ namespace HerzingProjectTemplate.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,FirstName,LastName,Age,Weight,Height,Gender,ActivityLevel,FitnessGoal,BMR,TDEE")] UserProfile userProfile)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,FirstName,LastName,Age,Email,Weight,Height,Gender,ActivityLevel,FitnessGoal,BMR,TDEE")] UserProfile userProfile)
         {
             if (id != userProfile.UserId) return NotFound();
+
+            //ModelState.Remove("Email");
+            //ModelState.Remove("Password");
 
             if (ModelState.IsValid)
             {

@@ -1,0 +1,44 @@
+﻿body {
+}
+
+.nutrition_create_form {
+    background-color: rgb(85, 40, 213, 0.74);
+    position: fixed; /*Fixes the background to the viewport*/
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /*Ensures it stays in the background*/
+    overflow: auto;
+    padding: 20px 70px;
+    background-image: url('../images/slide3.jpg'); /* Adjust path as needed */
+    height: 100%; /* Set a height to ensure the image displays */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-color: rgba(0, 0, 0, 0.8); /* Adds a 40% opaque black overlay */
+    background-blend-mode: overlay; /* Blends the color and image */
+}
+
+.form {
+    width: 900px;
+    margin: auto;
+    border: 1px solid white;
+    /*box-shadow: rgb(255, 232, 12, 0.7) 10px 10px inset;*/
+    box-shadow: 5px 5px 5px 5px rgba(255, 255, 255, 0.35);
+   
+}
+.form_title{
+    color: white;
+    text-align:center;
+}
+
+.top_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-between;
+}
+
+.back_to_profile_btn {
+}

@@ -1,20 +1,4 @@
-﻿
-
-//using HerzingProjectTemplate.Services;
-//using Microsoft.AspNetCore.Mvc;
-
-//namespace HerzingProjectTemplate.Controllers
-//{
-//    public class ProgressController : Controller
-//    {
-//        public IActionResult Index()
-//        {
-//            return View();
-//        }
-//    }
-//}
-
-using HerzingProjectTemplate.Models;
+﻿using HerzingProjectTemplate.Models;
 using HerzingProjectTemplate.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -31,16 +15,16 @@ namespace HerzingProjectTemplate.Controllers
         }
 
         // GET: Progress
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int id)
         {
             //fetch all data with this method
             var progressList = await _service.GetAllAsync();
 
             //filters based on id
-            if (id.HasValue)
-            {
-                progressList = progressList.Where(x => x.UserId == id.Value).ToList();
-            }
+            //if (id.HasValue)
+            //{
+            //    progressList = progressList.Where(x => x.UserId == id.Value);
+            //}
             return View(progressList);
         }
 

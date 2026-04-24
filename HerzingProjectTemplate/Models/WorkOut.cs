@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HerzingProjectTemplate.Models
 {
@@ -23,5 +24,8 @@ namespace HerzingProjectTemplate.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime WorkOutActivityDate { get; set; }
+
+        [ForeignKey(nameof(UserId))]
+        public UserProfile? UserProfile { get; set; } = null!;
     }
 }

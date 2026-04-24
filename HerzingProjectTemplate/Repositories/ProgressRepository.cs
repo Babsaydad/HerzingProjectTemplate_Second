@@ -1,6 +1,7 @@
 ﻿using HerzingProjectTemplate.Models;
 using Microsoft.EntityFrameworkCore;
 using HerzingProjectTemplate.Data;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace HerzingProjectTemplate.Repositories
 {
@@ -33,6 +34,15 @@ namespace HerzingProjectTemplate.Repositories
         {
             return await _context.Progresses
                 .FirstOrDefaultAsync(p => p.ProgressId == id);
+        }
+
+        //This selects only the user that signs in
+        public async Task<int?> GetUserIdAsync(int id)
+        {
+            return await _context.Progresses
+                .Where(u => u.UserId == id)
+                .Select(u => u.UserId) // Only pulls the ID column
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Progress>> GetByUserIdAsync(int userId)

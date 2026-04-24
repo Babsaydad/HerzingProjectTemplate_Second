@@ -6,9 +6,10 @@
 
 <h1>Profile Details</h1>
 <div class="d-flex justify-content-end">
-    <a asp-controller="Nutrition" asp-action="Create" class="btn btn-primary">Nutrition Page</a> &nbsp;
-    <a asp-controller="Workout" asp-action="Create" class="btn btn-primary">Workout Page</a>&nbsp;
-    <a asp-controller="Progress" asp-action="Index" class="btn btn-primary">Progress Page</a>
+    <a asp-controller="Nutrition" asp-action="Create" class="btn btn-primary" asp-route-userId="@Model.UserId">Nutrition Page</a> &nbsp;
+    <a asp-controller="Workout" asp-action="Create" class="btn btn-primary" asp-route-userId="@Model.UserId">Workout Page</a>&nbsp;
+    <a asp-controller="Progress" asp-action="Index" class="btn btn-primary" asp-route-userId="@Model.UserId">Progress Page</a>&nbsp;
+    <a asp-controller="Rank" asp-action="Index" class="btn btn-primary" asp-route-userId="@Model.UserId">Rank Page</a>
 </div>
 <hr />
 <div>

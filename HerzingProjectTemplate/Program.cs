@@ -19,6 +19,8 @@ builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 builder.Services.AddScoped<IProgressRepository, ProgressRepository>();
 builder.Services.AddScoped<IProgressService, ProgressService>();
+builder.Services.AddScoped<IRankRepository, RankRepository>();
+builder.Services.AddScoped<IRankService, RankService>();
 
 var app = builder.Build();
 

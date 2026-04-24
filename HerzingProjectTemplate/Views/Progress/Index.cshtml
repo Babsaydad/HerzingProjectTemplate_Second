@@ -6,39 +6,6 @@
 }
 
 
-@* <div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Food Name</th>
-                <th>Meal Type</th>
-                <th>Workout Type</th>
-                <th>Mode</th>
-                <th>Exercises</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Nutritions.FoodName</td>
-                    <td>@item.Nutritions.Mealtype</td>
-                    <td>@item.WorkoutType</td>
-                    <td>@item.WorkoutTypeMode</td>
-                    <td>@item.ExeciseList</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div> *@
- 
-
-
-
-
-
-
-
 <div class="modal fade" id="nutritionModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -127,6 +94,8 @@
                                     <p>Food Name: Rice and Beans</p>
                                     <label>
                                         Completed: <input type="radio" name="nutrition_status_breakfast" value="Completed" /> &nbsp; &nbsp; &nbsp;
+                                    </label>
+                                    <label>
                                         Not Completed: <input type="radio" name="nutrition_status_breakfast" value="Not Completed" />
                                     </label>
                                 </div>
@@ -136,6 +105,8 @@
                                     <p>Food Name: Groundnut and Flakes</p>
                                     <label>Status:
                                         Completed: <input type="radio" name="nutrition_status_lunch" value="Completed" /> &nbsp; &nbsp; &nbsp;
+                                    </label>
+                                    <label>Status:
                                         Not Completed: <input type="radio" name="nutrition_status_lunch" value="Not Completed" />
                                     </label>
                                 </div>
@@ -145,6 +116,8 @@
                                     <p>Food Name: Vegetables and Pap</p>
                                     <label>Status:
                                         Completed: <input type="radio" name="nutrition_status_dinner" value="Completed" />&nbsp; &nbsp; &nbsp;
+                                    </label>
+                                    <label>Status:
                                         Not Completed: <input type="radio" name="nutrition_status_dinner" value="Not Completed" />
                                     </label>
                                 </div>
@@ -172,6 +145,8 @@
                                     <p>Exercise: Barbell Squat1</p>
                                     <label>
                                         Completed: <input type="radio" name="workout_status1" value="Completed" /> &nbsp; &nbsp; &nbsp;
+                                    </label>
+                                    <label>
                                         Not Completed: <input type="radio" name="workout_status1" value="Not Completed" />
                                     </label>
                                 </div>
@@ -182,6 +157,8 @@
                                     <p>Exercise: Barbell Squat2</p>
                                     <label>
                                         Completed: <input type="radio" name="workout_status2" value="Completed" />&nbsp; &nbsp; &nbsp;
+                                    </label>
+                                    <label>
                                         Not Completed: <input type="radio" name="workout_status2" value="Not Completed" />
                                     </label>
                                 </div>
@@ -192,6 +169,8 @@
                                     <p>Exercise: Barbell Squat3</p>
                                     <label>
                                         Completed: <input type="radio" name="workout_status3" value="Completed" />&nbsp; &nbsp; &nbsp;
+                                    </label>
+                                    <label>
                                         Not Completed: <input type="radio" name="workout_status3" value="Not Completed" />
                                     </label>
                                 </div>

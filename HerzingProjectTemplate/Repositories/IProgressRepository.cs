@@ -9,6 +9,8 @@ namespace HerzingProjectTemplate.Repositories
         Task<Progress?> GetByIdWithNutritionWorkoutAsync(int id);
         //Task<Progress?> GetByEmailAsync(string email);
         Task<Progress?> GetByIdAsync(int id);
+
+        //Task<Progress?> GetUserIdAsync(int id);
         Task AddAsync(Progress progress);
         Task UpdateAsync(Progress progress);
         Task DeleteAsync(int id);

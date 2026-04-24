@@ -8,6 +8,8 @@ namespace HerzingProjectTemplate.Services
         Task<IEnumerable<Progress>> GetAllAsync();
         Task<Progress?> GetByIdAsync(int id);
         Task<IEnumerable<Progress>> GetByUserIdAsync(int userId);
+
+        //Task<Progress?> GetUserIdAsync(int id);
         Task CreateAsync(Progress progress);
         Task UpdateAsync(Progress progress);
         Task DeleteAsync(int id);

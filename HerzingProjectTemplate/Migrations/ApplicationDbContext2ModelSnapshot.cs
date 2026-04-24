@@ -128,6 +128,37 @@ namespace HerzingProjectTemplate.Migrations
                     b.ToTable("Progresses");
                 });
 
+            modelBuilder.Entity("HerzingProjectTemplate.Models.Rank", b =>
+                {
+                    b.Property<int>("RankId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RankId"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MaxValue")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinValue")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RankName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RankId");
+
+                    b.ToTable("Ranks");
+                });
+
             modelBuilder.Entity("HerzingProjectTemplate.Models.UserProfile", b =>
                 {
                     b.Property<int>("UserId")
@@ -207,9 +238,6 @@ namespace HerzingProjectTemplate.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserProfileUserId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("WorkOutActivityDate")
                         .HasColumnType("datetime2");
 
@@ -229,7 +257,7 @@ namespace HerzingProjectTemplate.Migrations
 
                     b.HasIndex("ProgressId");
 
-                    b.HasIndex("UserProfileUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("WorkOuts");
                 });
@@ -255,9 +283,13 @@ namespace HerzingProjectTemplate.Migrations
                         .WithMany("WorkOuts")
                         .HasForeignKey("ProgressId");
 
-                    b.HasOne("HerzingProjectTemplate.Models.UserProfile", null)
+                    b.HasOne("HerzingProjectTemplate.Models.UserProfile", "UserProfile")
                         .WithMany("WorkOuts")
-                        .HasForeignKey("UserProfileUserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserProfile");
                 });
 
             modelBuilder.Entity("HerzingProjectTemplate.Models.Progress", b =>

@@ -10,9 +10,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NutritionId" />
+            <input type="hidden" asp-for="UserId" />
             <div class="form-group">
                 <label asp-for="MealType" class="control-label"></label>
                 <input asp-for="MealType" class="form-control" />
@@ -47,6 +48,11 @@
                 <label asp-for="Fats" class="control-label"></label>
                 <input asp-for="Fats" class="form-control" />
                 <span asp-validation-for="Fats" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Carbohydrates" class="control-label"></label>
+                <input asp-for="Carbohydrates" class="form-control" />
+                <span asp-validation-for="Carbohydrates" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Calories" class="control-label"></label>

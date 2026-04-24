@@ -94,12 +94,15 @@ namespace HerzingProjectTemplate.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NutritionId,MealType,FoodName,FoodEnergy,Day,DailyTotal,Protein,Fats,Calories,NutritionActivityDate,UserId")] Nutrition nutrition)
+        public async Task<IActionResult> Edit(int id, [Bind("UserId,NutritionId,MealType,FoodName,FoodEnergy,Day,DailyTotal,Protein,Fats,Calories,NutritionActivityDate")] Nutrition nutrition)
         {
             if (id != nutrition.NutritionId)
             {
                 return NotFound();
             }
+
+            ModelState.Remove("Email");
+            ModelState.Remove("Password");
 
             if (ModelState.IsValid)
             {
@@ -118,7 +121,7 @@ namespace HerzingProjectTemplate.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "UserProfile", new { id = nutrition.UserId });
             }
             return View(nutrition);
         }
